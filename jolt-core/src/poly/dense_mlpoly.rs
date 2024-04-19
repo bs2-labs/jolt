@@ -5,18 +5,19 @@ use crate::utils::{self, compute_dotproduct, compute_dotproduct_low_optimized};
 
 use crate::utils::math::Math;
 use ark_ff::PrimeField;
+use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use core::ops::Index;
 use rayon::prelude::*;
 use std::ops::AddAssign;
 
-#[derive(Debug, PartialEq)]
-pub struct DensePolynomial<F> {
+#[derive(Debug, CanonicalDeserialize, CanonicalSerialize, PartialEq)]
+pub struct DensePolynomial<F: CanonicalSerialize + CanonicalDeserialize> {
     num_vars: usize, // the number of variables in the multilinear polynomial
     len: usize,
     Z: Vec<F>, // evaluations of the polynomial in all the 2^num_vars Boolean inputs
 }
 
-impl<F: PrimeField> DensePolynomial<F> {
+impl<F: PrimeField + CanonicalSerialize + CanonicalDeserialize> DensePolynomial<F> {
     pub fn new(Z: Vec<F>) -> Self {
         assert!(
             utils::is_power_of_two(Z.len()),
@@ -274,13 +275,13 @@ impl<F: PrimeField> DensePolynomial<F> {
     }
 }
 
-impl<F: PrimeField> Clone for DensePolynomial<F> {
+impl<F: PrimeField + CanonicalSerialize + CanonicalDeserialize> Clone for DensePolynomial<F> {
     fn clone(&self) -> Self {
         Self::new(self.Z[0..self.len].to_vec())
     }
 }
 
-impl<F> Index<usize> for DensePolynomial<F> {
+impl<F: CanonicalSerialize + CanonicalDeserialize> Index<usize> for DensePolynomial<F> {
     type Output = F;
 
     #[inline(always)]
@@ -289,7 +290,9 @@ impl<F> Index<usize> for DensePolynomial<F> {
     }
 }
 
-impl<F> AsRef<DensePolynomial<F>> for DensePolynomial<F> {
+impl<F: CanonicalSerialize + CanonicalDeserialize> AsRef<DensePolynomial<F>>
+    for DensePolynomial<F>
+{
     fn as_ref(&self) -> &DensePolynomial<F> {
         self
     }

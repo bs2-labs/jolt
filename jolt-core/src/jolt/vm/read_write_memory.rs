@@ -199,7 +199,7 @@ pub fn random_memory_trace<F: PrimeField>(
     )
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug, CanonicalDeserialize, CanonicalSerialize)]
 pub struct ReadWriteMemoryPreprocessing {
     min_bytecode_address: u64,
     pub bytecode_bytes: Vec<u8>,

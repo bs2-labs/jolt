@@ -9,7 +9,7 @@ use ark_ec::CurveGroup;
 use ark_ff::PrimeField;
 use ark_serialize::*;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, CanonicalDeserialize, CanonicalSerialize)]
 pub struct GrandProductCircuit<F: PrimeField> {
     left_vec: Vec<DensePolynomial<F>>,
     right_vec: Vec<DensePolynomial<F>>,

@@ -44,7 +44,7 @@ use self::{
 
 use super::instruction::JoltInstructionSet;
 
-#[derive(Clone)]
+#[derive(Clone, Debug, CanonicalDeserialize, CanonicalSerialize)]
 pub struct JoltPreprocessing<F, G>
 where
     F: PrimeField,

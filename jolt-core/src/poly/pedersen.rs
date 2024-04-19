@@ -8,7 +8,7 @@ use std::io::Read;
 
 use crate::msm::VariableBaseMSM;
 
-#[derive(Clone, CanonicalSerialize, CanonicalDeserialize)]
+#[derive(Clone, Debug, CanonicalSerialize, CanonicalDeserialize)]
 pub struct PedersenGenerators<G: CurveGroup> {
     pub generators: Vec<G>,
 }

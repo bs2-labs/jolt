@@ -156,7 +156,7 @@ pub struct BytecodePolynomials<F: PrimeField, G: CurveGroup<ScalarField = F>> {
     pub(super) t_final: DensePolynomial<F>,
 }
 
-#[derive(Clone)]
+#[derive(Debug, Clone, CanonicalSerialize, CanonicalDeserialize)]
 pub struct BytecodePreprocessing<F: PrimeField> {
     /// Size of the (padded) bytecode.
     code_size: usize,
