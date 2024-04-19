@@ -765,12 +765,12 @@ pub struct PrimarySumcheck<F: PrimeField, G: CurveGroup<ScalarField = F>> {
 
 #[derive(Clone, Debug, CanonicalDeserialize, CanonicalSerialize)]
 pub struct InstructionLookupsPreprocessing<F: PrimeField> {
-    subtable_to_memory_indices: Vec<Vec<usize>>, // Vec<Range<usize>>?
-    instruction_to_memory_indices: Vec<Vec<usize>>,
-    memory_to_subtable_index: Vec<usize>,
-    memory_to_dimension_index: Vec<usize>,
-    materialized_subtables: Vec<Vec<F>>,
-    num_memories: usize,
+    pub subtable_to_memory_indices: Vec<Vec<usize>>, // Vec<Range<usize>>?
+    pub instruction_to_memory_indices: Vec<Vec<usize>>,
+    pub memory_to_subtable_index: Vec<usize>,
+    pub memory_to_dimension_index: Vec<usize>,
+    pub materialized_subtables: Vec<Vec<F>>,
+    pub num_memories: usize,
 }
 
 impl<F: PrimeField> InstructionLookupsPreprocessing<F> {
