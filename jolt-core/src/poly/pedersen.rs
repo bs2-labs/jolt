@@ -28,6 +28,7 @@ impl<G: CurveGroup> PedersenGenerators<G> {
         let mut rng = ChaCha20Rng::from_seed(seed);
 
         let mut generators: Vec<G> = Vec::new();
+        println!("PedersenGenerators len: {:?}", len);
         for _ in 0..len {
             generators.push(G::rand(&mut rng));
         }

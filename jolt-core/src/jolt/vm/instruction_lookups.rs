@@ -837,8 +837,13 @@ impl<F: PrimeField> InstructionLookupsPreprocessing<F> {
         Subtables: JoltSubtableSet<F>,
     {
         let mut subtables = Vec::with_capacity(Subtables::COUNT);
+        println!("subtables count: {}", Subtables::COUNT);
+
         for subtable in Subtables::iter() {
-            subtables.push(subtable.materialize(M));
+            let tmp = subtable.materialize(M);
+            println!("subtable len: {}", tmp.len());
+
+            subtables.push(tmp);
         }
         subtables
     }

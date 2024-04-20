@@ -312,7 +312,13 @@ impl<F: PrimeField, G: CurveGroup<ScalarField = F>> BytecodePolynomials<F, G> {
 
         // a_read_write, t_read, v_read_write (opcode, rs1, rs2, rd, imm)
         let num_read_write_generators =
-            matrix_dimensions(max_trace_length.log_2(), NUM_R1CS_POLYS).1;
+            matrix_dimensions(max_trace_length.log_2(), max_trace_length.log_2()).1;
+        println!(
+            "bytecode matrix_dimensions len: {}, input: {}, {}",
+            num_read_write_generators,
+            max_trace_length.log_2(),
+            max_trace_length.log_2()
+        );
         // t_final
         let num_init_final_generators = matrix_dimensions(max_bytecode_size.log_2(), 1).1;
         std::cmp::max(num_read_write_generators, num_init_final_generators)

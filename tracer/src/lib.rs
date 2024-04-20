@@ -116,7 +116,7 @@ pub fn decode(elf: &PathBuf) -> (Vec<ELFInstruction>, Vec<(u64, u8)>) {
             data.push((address + offset as u64, *byte));
         }
     }
-
+    // println!("memory_init: {:?}", data);
     (instructions, data)
 }
 
